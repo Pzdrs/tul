@@ -16,3 +16,6 @@
 [submodule "ald-2022"]
 	path = ald-2022
 	url = git@github.com:Pzdrs/ald-2022.git
+[submodule "ctc-2024/go-gas"]
+	path = ctc-2024/go-gas
+	url = git@github.com:Pzdrs/go-gas.git
