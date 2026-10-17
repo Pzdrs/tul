@@ -22,3 +22,9 @@
 [submodule "dm-2025"]
 	path = dm-2025
 	url = git@github.com:Pzdrs/dm-2025.git
+[submodule "alg2-2022/console-bank"]
+	path = alg2-2022/console-bank
+	url = git@github.com:Pzdrs/console-bank.git
+[submodule "alg2-2022/semestralka"]
+	path = alg2-2022/semestralka
+	url = git@github.com:Pzdrs/console-bank.git

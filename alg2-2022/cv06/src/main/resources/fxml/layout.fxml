@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bohac.Controller">
+    <top>
+        <Label text="Tic-Tac-Toe" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="40.0" />
+            </font>
+        </Label>
+    </top>
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="player1Label" text="Player 1" textFill="RED">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefWidth="200.0" spacing="3.0">
+               <children>
+                  <Label text="Session wins:" />
+                  <Label fx:id="player1Wins" text="0" />
+               </children>
+            </HBox>
+         </children></VBox>
+    </left>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="player2Label" text="Player 2" textFill="BLUE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="150.0" spacing="3.0">
+               <children>
+                  <Label text="Session wins:" />
+                  <Label fx:id="player2Wins" text="0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
+   <bottom>
+      <VBox fx:id="infoBox" alignment="CENTER" prefHeight="50.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+              <GridPane fx:id="grid" alignment="CENTER" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
