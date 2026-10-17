@@ -21,4 +21,4 @@
 	url = git@github.com:Pzdrs/go-gas.git
 [submodule "dm-2025"]
 	path = dm-2025
-	url = ./dm-2025
+	url = git@github.com:Pzdrs/dm-2025.git
