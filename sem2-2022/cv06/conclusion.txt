@@ -1,0 +1,7 @@
+dataset 0 byl velice daleko od skutecnosti, dataset 1, s dvojnasobnym poctem bodu,
+uz se zacal blizit - lagrange byl trochu pozadu, ale ne tak moc, jako u 
+tech zbylych dvou datasetu
+    
+u datasetu 2 a 3 se vsechny metody krome lagrange celkem 
+hezky trefily, dataset 2 mel oproti 3 mene randomizace desetinnych cisel
+v bodech y coz zpusobilo presnejsi aproximaci grafu

@@ -1,0 +1,6 @@
+NEKURACI = naklady na zdravotni peci rostou dalo by se rict linearne v zavislosti na vek - cim starsi tim drazsi - ve vetsine pripadu (jsou tam samozrejme odchylky)
+KURACI   = naklady na zdravotni peci jsou znacne vyssi nez u nekuraku - bud o neco vyssi nebo o hodne vyssi (to je jedinny co jsem z toho grafu vycetl)
+
+BMI neni idealni measure toho, jak je clovek fit - tudiz ten graf neni jednoznacny, meaning muzu byt podle BMI normalni a fit, 
+ale jsem u doktora kazdy druhy tyden, likewise u lidi s nizsim nebo vyssim BMI
+U kuraku to spise vypada, ze cim vyssi BMI tim generally vyssi naklady na doktora

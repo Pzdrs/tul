@@ -1,0 +1,53 @@
+clear;
+clc;
+clf;
+% load data
+data = load("velocity.mat", '-ascii');
+cas = data(1, :);
+rychlost = data(2, :);
+
+% prevedu km/h na m/s
+rychlost = rychlost ./ 3.6;
+
+% graf
+yyaxis left;
+plot(cas, rychlost, "DisplayName", "Závislost rychlosti na čase");
+xlabel("Čas");
+ylabel("Rychlost");
+
+% body zrychleni v case
+a = zeros(1, numel(cas));
+% Dopředná diference pro první bod, protože před tímhle bodem žádný další
+% není, tudíž nemáme dost informací na centrální diferenci.
+a(1) = forward_difference( ...
+    [cas(1), rychlost(1)], ...
+    [cas(2), rychlost(2)] ...
+);
+% Pro každý bod, kromě krajních bodů intervalu, se provede centrální
+% diference
+for i = 2:numel(a) - 1
+    a(i) = central_difference( ...
+        [cas(i - 1), rychlost(i - 1)], ...
+        [cas(i), rychlost(i)], ...
+        [cas(i + 1), rychlost(i + 1)] ...
+    );
+end
+% Stejný případ jako u prvního bodu - u posledního bodu nemáme žádný bod
+% zatím, takže nemůžeme provést centrální diferenci.
+a(end) = backward_difference( ...
+    [cas(end), rychlost(end)], ...
+    [cas(end - 1), rychlost(end - 1)] ...
+);
+
+yyaxis right;
+plot(cas, a, "DisplayName", "Závislost zrychlení na čase");
+ylabel("Zrychlení");
+z = sus_points(a);
+z = arrayfun(@(x) (cas(x+1) + cas(x)) / 2, z);
+% body, kdy je zrychleni nulove - vykreslim vertikalni dashed caru
+for i=1:numel(z)
+    xline(z(i), 'HandleVisibility','off', "LineStyle", "--");
+end
+
+legend("Location", "best");
+saveas(gcf, "graph_acceleration.png");

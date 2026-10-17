@@ -1,0 +1,8 @@
+CMR = cim vyssi pocet zjemneni, tim presnejsi vysledek, od 100 nahoru uz to moc nedava smysl jenom kdybych fakt potreboval presne na x desetinnych mist
+- n = 10 -> -0.00012551
+- n = 100 -> -1.2549e-06
+- n = 1000 -> -1.2549e-08
+
+Integrál sin(x) ./ x nelze vyhodnotit lichoběžníkovým pravidlem,
+protože integrál je pod zlomkem a zatěžuje tak toto pravidlo velice složitým postupem.
+A navíc by nám integrál vyšel záporný...
