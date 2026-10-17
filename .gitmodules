@@ -10,3 +10,6 @@
 [submodule "icp-2025/scuffcraft"]
 	path = icp-2025/scuffcraft
 	url = git@github.com:Pzdrs/scuffcraft.git
+[submodule "tas-2025"]
+	path = tas-2025
+	url = git@github.com:Pzdrs/tas-2025.git
