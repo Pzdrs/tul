@@ -13,3 +13,6 @@
 [submodule "tas-2025"]
 	path = tas-2025
 	url = git@github.com:Pzdrs/tas-2025.git
+[submodule "ald-2022"]
+	path = ald-2022
+	url = git@github.com:Pzdrs/ald-2022.git
