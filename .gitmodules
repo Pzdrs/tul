@@ -4,3 +4,6 @@
 [submodule "pvi-2025"]
 	path = pvi-2025
 	url = git@github.com:Pzdrs/pvi-2025.git
+[submodule "pwa-2025/what-it-doo"]
+	path = pwa-2025/what-it-doo
+	url = git@github.com:Pzdrs/what-it-doo.git
