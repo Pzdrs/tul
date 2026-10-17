@@ -1,0 +1,1 @@
+Zde umistit vývojový diagram k uloze 22 ze souboru Ulohy03 "Test, zda zadané celé číslo je prvočíslo". 
