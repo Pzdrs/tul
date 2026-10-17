@@ -1,0 +1,438 @@
+Microsoft Windows [Version 10.0.19044.2728]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Petr\Development\DPB\cv04>docker build -t cv04_mongo .
+[+] Building 0.7s (7/7) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 173B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/mongo:latest                                                    0.0s
+ => [internal] load build context                                                                                  0.1s
+ => => transferring context: 2.03MB                                                                                0.0s
+ => [1/2] FROM docker.io/library/mongo:latest                                                                      0.4s
+ => [2/2] COPY restaurants.json /tmp/restaurants.json                                                              0.1s
+ => exporting to image                                                                                             0.1s
+ => => exporting layers                                                                                            0.1s
+ => => writing image sha256:0beb3a1410596944c61ab57378c097666fbd1b8018a616c7b060747cafce747e                       0.0s
+ => => naming to docker.io/library/cv04_mongo                                                                      0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\Petr\Development\DPB\cv04>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+cv04_mongo   latest    0beb3a141059   5 seconds ago   647MB
+redis        latest    31f08b90668e   7 days ago      117MB
+mongo        latest    dcfda10b61c5   3 weeks ago     645MB
+
+C:\Users\Petr\Development\DPB\cv04>docker run -d --name dpb-mongo -p 27017:27017 cv04_mongo
+26ccdd82f6bc2b13d854b6a7acd44cce1311ba6dac2edfdb6c33df1573fb4fc8
+
+C:\Users\Petr\Development\DPB\cv04>docker ps
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS                      NAMES
+26ccdd82f6bc   cv04_mongo   "docker-entrypoint.s…"   4 seconds ago   Up 2 seconds   0.0.0.0:27017->27017/tcp   dpb-mongo
+
+C:\Users\Petr\Development\DPB\cv04>docker container exec -it dpb-mongo bash
+root@26ccdd82f6bc:/# cd /tmp
+root@26ccdd82f6bc:/tmp# ls
+mongodb-27017.sock  restaurants.json
+root@26ccdd82f6bc:/tmp# mongoimport --db cv04 --collection restaurants --type json --jsonArray --file restaurants.json
+2023-03-30T10:48:23.644+0000    connected to: mongodb://localhost/
+2023-03-30T10:48:23.913+0000    3772 document(s) imported successfully. 0 document(s) failed to import.
+root@26ccdd82f6bc:/tmp# mongosh
+Current Mongosh Log ID: 642568ff6c517928507c5b8d
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0
+Using MongoDB:          6.0.4
+Using Mongosh:          1.8.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2023-03-30T10:47:23.771+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2023-03-30T10:47:24.145+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2023-03-30T10:47:24.146+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
+   2023-03-30T10:47:24.146+00:00: vm.max_map_count is too low
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> db
+test
+test> use cv04
+switched to db cv04
+cv04> db
+cv04
+cv04> db.restaurants
+cv04.restaurants
+cv04> db.restaurants.countDocuments()
+3772
+cv04> db.restaurants.insertOne({"borough": "Nevym co to je borough","zipcode": "25565", "cuisine":"Mexican"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64256aa3fa8dade9be664518")
+}
+cv04> db.restaurants.findOne({_id: ObjectId("64256aa3fa8dade9be664518")})
+{
+  _id: ObjectId("64256aa3fa8dade9be664518"),
+  borough: 'Nevym co to je borough',
+  zipcode: '25565',
+  cuisine: 'Mexican'
+}
+cv04> db.restaurants.updateOne({_id: ObjectId("64256aa3fa8dade9be664518")},{$set: {cuisine: "Vietnamese"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cv04> db.restaurants.updateOne({_id: ObjectId("64256aa3fa8dade9be664518")},{$push: {grades: {"date":{"$date": Date()}, "grade": "A", "score": 10}}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cv04> db.restaurants.findOne({_id: ObjectId("64256aa3fa8dade9be664518")})
+{
+  _id: ObjectId("64256aa3fa8dade9be664518"),
+  borough: 'Nevym co to je borough',
+  zipcode: '25565',
+  cuisine: 'Vietnamese',
+  grades: [
+    {
+      date: {
+        '$date': 'Thu Mar 30 2023 11:10:43 GMT+0000 (Coordinated Universal Time)'
+      },
+      grade: 'A',
+      score: 10
+    }
+  ]
+}
+cv04> db.restaurants.deleteOne({_id: ObjectId("64256aa3fa8dade9be664518")})
+{ acknowledged: true, deletedCount: 1 }
+
+
+
+
+cv04> db.restaurants.find()
+cv04> db.restaurants.find({},{name:1, _id: 0}).sort({name: 1})
+[
+  {},
+  { name: '(Lewis Drug Store) Locanda Vini E Olii' },
+  { name: '1 East 66Th Street Kitchen' },
+  { name: '101 Deli' },
+  { name: '101 Restaurant And Bar' },
+  { name: '1020 Bar' },
+  { name: '104-01 Foster Avenue Coffee Shop(Ups)' },
+  { name: '10Th Avenue Pizza & Cafe' },
+  { name: '111 Restaurant' },
+  { name: '15 East Restaurant' },
+  { name: '200 Fifth Avenue Restaurant & Sports Bar' },
+  { name: '21 Club' },
+  { name: '2A' },
+  { name: '3 Deli & Grill' },
+  { name: '3 Guys' },
+  { name: '3 Guys Resturant' },
+  { name: '42Nd Street Pizza Diner' },
+  { name: "44 & X Hell'S Kitchen" },
+  { name: '44 Sw Ristorante & Bar' },
+  { name: '5 Burro Cafe' }
+]
+Type "it" for more
+cv04> db.restaurants.find({},{name:1, _id: 0}).sort({name: 1}).limit(10)
+[
+  {},
+  { name: '(Lewis Drug Store) Locanda Vini E Olii' },
+  { name: '1 East 66Th Street Kitchen' },
+  { name: '101 Deli' },
+  { name: '101 Restaurant And Bar' },
+  { name: '1020 Bar' },
+  { name: '104-01 Foster Avenue Coffee Shop(Ups)' },
+  { name: '10Th Avenue Pizza & Cafe' },
+  { name: '111 Restaurant' },
+  { name: '15 East Restaurant' }
+]
+cv04> db.restaurants.find({},{name:1, _id: 0}).sort({name: 1}).skip(10).limit(10)
+[
+  { name: '200 Fifth Avenue Restaurant & Sports Bar' },
+  { name: '21 Club' },
+  { name: '2A' },
+  { name: '3 Deli & Grill' },
+  { name: '3 Guys' },
+  { name: '3 Guys Resturant' },
+  { name: '42Nd Street Pizza Diner' },
+  { name: "44 & X Hell'S Kitchen" },
+  { name: '44 Sw Ristorante & Bar' },
+  { name: '5 Burro Cafe' }
+]
+cv04> db.restaurants.find({borough: "Bronx"},{name:1, _id: 0})
+[
+  { name: 'Wild Asia' },
+  { name: 'Carvel Ice Cream' },
+  { name: 'Happy Garden' },
+  { name: 'Happy Garden' },
+  { name: 'Manhem Club' },
+  { name: 'Morris Park Bake Shop' },
+  { name: 'The New Starling Athletic Club Of The Bronx' },
+  { name: 'Yankee Tavern' },
+  { name: 'Mcdwyers Pub' },
+  { name: 'The Punch Bowl' },
+  { name: 'Munchtime' },
+  { name: 'Ihop' },
+  { name: "Lulu'S Coffee Shop" },
+  { name: 'Marina Delray' },
+  { name: 'Cool Zone' },
+  { name: "The Lark'S Nest" },
+  { name: 'African Market (Baboon Cafe)' },
+  { name: 'Beaver Pond' },
+  { name: 'Terrace Cafe' },
+  { name: 'African Terrace' }
+]
+Type "it" for more
+cv04> db.restaurants.find({name: {$regex: /^M/}},{name:1, _id: 0})
+[
+  { name: 'May May Kitchen' },
+  { name: 'Mejlander & Mulgannon' },
+  { name: 'Metropolitan Club' },
+  { name: 'Manhem Club' },
+  { name: 'Morris Park Bake Shop' },
+  { name: 'Marchis Restaurant' },
+  { name: "Mcsorley'S Old Ale House" },
+  { name: 'Melody Lanes' },
+  { name: "Moran'S Chelsea" },
+  { name: 'Mcdwyers Pub' },
+  { name: 'Mee Sum Coffee Shop' },
+  { name: 'Margherita Pizza' },
+  { name: "Michael'S Restaurant" },
+  { name: 'Munchtime' },
+  { name: "Maloney'S Bar" },
+  { name: 'Marina Delray' },
+  { name: 'Mexico Lindo Restaurant' },
+  { name: "Mitchell'S Restaurant" },
+  { name: 'Mr Broadway Kosher Restaurant' },
+  { name: 'Malaga Restaurant' }
+]
+Type "it" for more
+cv04> db.restaurants.find({cuisine: "Italian", borough: "Manhattan"},{name:1, _id: 0})
+[
+  { name: 'Isle Of Capri Resturant' },
+  { name: 'Marchis Restaurant' },
+  { name: 'Forlinis Restaurant' },
+  { name: 'Angelo Of Mulberry St.' },
+  { name: "Arturo'S" },
+  { name: 'V & T Restaurant' },
+  { name: 'Barbetta Restaurant' },
+  { name: 'Nanni Restaurant' },
+  { name: 'Il Vagabondo Restaurant' },
+  { name: "Patsy'S Italian Restaurant" },
+  { name: "John'S Restaurant" },
+  { name: 'Mimis Restaurant & Bar' },
+  { name: 'Fiorellos' },
+  { name: 'Da Silvano Restaurant' },
+  { name: 'Il Cortile Restaurant' },
+  { name: 'Villa Mosconi Restaurant' },
+  { name: 'Volare Restaurant' },
+  { name: "Rossini'S" },
+  { name: 'Cucina Vivolo' },
+  { name: 'Don Filippo Restaurant' }
+]
+Type "it" for more
+cv04> db.restaurants.find({grades: {$elemMatch: {score:{$gt:80}}}}, {grades: 1})
+[
+  {
+    _id: ObjectId("642568f7696fa110035bbfdf"),
+    grades: [
+      {
+        date: ISODate("2014-08-22T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      },
+      {
+        date: ISODate("2014-03-28T00:00:00.000Z"),
+        grade: 'C',
+        score: 131
+      },
+      {
+        date: ISODate("2013-09-25T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      },
+      {
+        date: ISODate("2013-04-08T00:00:00.000Z"),
+        grade: 'B',
+        score: 25
+      },
+      {
+        date: ISODate("2012-10-15T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      },
+      {
+        date: ISODate("2011-10-19T00:00:00.000Z"),
+        grade: 'A',
+        score: 13
+      }
+    ]
+  },
+  {
+    _id: ObjectId("642568f7696fa110035bc07d"),
+    grades: [
+      {
+        date: ISODate("2014-09-15T00:00:00.000Z"),
+        grade: 'A',
+        score: 5
+      },
+      {
+        date: ISODate("2014-01-14T00:00:00.000Z"),
+        grade: 'A',
+        score: 8
+      },
+      {
+        date: ISODate("2013-05-30T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      },
+      {
+        date: ISODate("2013-04-24T00:00:00.000Z"),
+        grade: 'P',
+        score: 2
+      },
+      {
+        date: ISODate("2012-10-01T00:00:00.000Z"),
+        grade: 'A',
+        score: 9
+      },
+      {
+        date: ISODate("2012-04-06T00:00:00.000Z"),
+        grade: 'C',
+        score: 92
+      },
+      {
+        date: ISODate("2011-11-03T00:00:00.000Z"),
+        grade: 'C',
+        score: 41
+      }
+    ]
+  },
+  {
+    _id: ObjectId("642568f7696fa110035bc1d5"),
+    grades: [
+      {
+        date: ISODate("2014-12-24T00:00:00.000Z"),
+        grade: 'Z',
+        score: 31
+      },
+      {
+        date: ISODate("2014-06-17T00:00:00.000Z"),
+        grade: 'C',
+        score: 98
+      },
+      {
+        date: ISODate("2013-12-12T00:00:00.000Z"),
+        grade: 'C',
+        score: 32
+      },
+      {
+        date: ISODate("2013-05-22T00:00:00.000Z"),
+        grade: 'B',
+        score: 21
+      },
+      {
+        date: ISODate("2012-05-02T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      }
+    ]
+  },
+  {
+    _id: ObjectId("642568f7696fa110035bca4a"),
+    grades: [
+      {
+        date: ISODate("2014-06-27T00:00:00.000Z"),
+        grade: 'C',
+        score: 89
+      },
+      {
+        date: ISODate("2013-06-06T00:00:00.000Z"),
+        grade: 'A',
+        score: 6
+      },
+      {
+        date: ISODate("2012-06-19T00:00:00.000Z"),
+        grade: 'A',
+        score: 13
+      }
+    ]
+  }
+]
+
+BONUSOVKA
+
+cv04> db.restaurants.find({grades: {$elemMatch: {score:{$gt:80, $lt: 90}}}}, {grades: 1})
+[
+  {
+    _id: ObjectId("642568f7696fa110035bca4a"),
+    grades: [
+      {
+        date: ISODate("2014-06-27T00:00:00.000Z"),
+        grade: 'C',
+        score: 89
+      },
+      {
+        date: ISODate("2013-06-06T00:00:00.000Z"),
+        grade: 'A',
+        score: 6
+      },
+      {
+        date: ISODate("2012-06-19T00:00:00.000Z"),
+        grade: 'A',
+        score: 13
+      }
+    ]
+  }
+]
+cv04> db.restaurants.updateMany({grades: {$elemMatch: {score: {$gt: 80}}}}, {$set: {popular: 1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+cv04> db.restaurants.updateMany({grades: {$elemMatch: {score: {$lt: 1}}}}, {$set: {trash: 1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 178,
+  modifiedCount: 178,
+  upsertedCount: 0
+}
+cv04> db.restaurants.find({$and: [{popular: {$exists: true}}, {trash: {$exists: true}}]})
+cv04> db.restaurants.updateMany( 
+	{"grades.score": {$gt: 90}}, 
+	{$set: {
+		"grades.$[elem].top_score": 1 
+	}}, 
+	{
+		arrayFilters: [
+			{"elem.score": { $gt: 90 }}
+		]
+	}
+)
