@@ -1,0 +1,3 @@
+[submodule "dpg-2026/chat"]
+	path = dpg-2026/chat
+	url = git@github.com:Pzdrs/what-it-doo.git
