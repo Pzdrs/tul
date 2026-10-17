@@ -19,3 +19,6 @@
 [submodule "ctc-2024/go-gas"]
 	path = ctc-2024/go-gas
 	url = git@github.com:Pzdrs/go-gas.git
+[submodule "dm-2025"]
+	path = dm-2025
+	url = ./dm-2025
