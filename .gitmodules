@@ -7,3 +7,6 @@
 [submodule "pwa-2025/what-it-doo"]
 	path = pwa-2025/what-it-doo
 	url = git@github.com:Pzdrs/what-it-doo.git
+[submodule "icp-2025/scuffcraft"]
+	path = icp-2025/scuffcraft
+	url = git@github.com:Pzdrs/scuffcraft.git
