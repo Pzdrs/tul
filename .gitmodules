@@ -67,3 +67,9 @@
 [submodule "tpb-2023"]
 	path = tpb-2023
 	url = git@github.com:Pzdrs/tpb-2023.git
+[submodule "anj2-2022"]
+	path = anj2-2022
+	url = git@github.com:Pzdrs/ANJ2-portfolio.git
+[submodule "prj-2023"]
+	path = prj-2023
+	url = git@github.com:Pzdrs/smart-relays.git
