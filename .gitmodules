@@ -73,3 +73,21 @@
 [submodule "prj-2023"]
 	path = prj-2023
 	url = git@github.com:Pzdrs/smart-relays.git
+[submodule "bp/BP-app"]
+	path = bp/BP-app
+	url = git@github.com:Pzdrs/BP-app.git
+[submodule "bp/BP-thesis"]
+	path = bp/BP-thesis
+	url = git@github.com:Pzdrs/BP-thesis.git
+[submodule "bp/BP-docs"]
+	path = bp/BP-docs
+	url = git@github.com:Pzdrs/BP-docs.git
+[submodule "bp/BP-firmware"]
+	path = bp/BP-firmware
+	url = git@github.com:Pzdrs/BP-firmware.git
+[submodule "dp/masters-thesis"]
+	path = dp/masters-thesis
+	url = git@github.com:Pzdrs/masters-thesis.git
+[submodule "dp/graph-insights"]
+	path = dp/graph-insights
+	url = git@gitlab.com:pycrs-epa/graph-insights.git
