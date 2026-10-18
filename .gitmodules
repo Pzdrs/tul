@@ -28,3 +28,6 @@
 [submodule "alg2-2022/semestralka"]
 	path = alg2-2022/semestralka
 	url = git@github.com:Pzdrs/console-bank.git
+[submodule "ppj-2025/semestralka"]
+	path = ppj-2025/semestralka
+	url = git@github.com:Pzdrs/CloudQuery.git
