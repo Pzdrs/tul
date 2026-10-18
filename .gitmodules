@@ -43,3 +43,9 @@
 [submodule "what-it-doo"]
 	path = pwa-2025
 	url = git@github.com:Pzdrs/what-it-doo.git
+[submodule "stin-2023"]
+	path = stin-2023
+	url = git@github.com:Pzdrs/STIN-bank.git
+[submodule "pjpa-2023"]
+	path = pjpa-2023
+	url = git@github.com:Pzdrs/pjpa-2023.git
