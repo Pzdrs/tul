@@ -58,3 +58,12 @@
 [submodule "pdo-2024"]
 	path = pdo-2024
 	url = git@github.com:Pzdrs/pdo-2024.git
+[submodule "ui-2023"]
+	path = ui-2023
+	url = git@github.com:Pzdrs/ui-2023.git
+[submodule "mt-2023"]
+	path = mt-2023
+	url = git@github.com:Pzdrs/mt-2023.git
+[submodule "tpb-2023"]
+	path = tpb-2023
+	url = git@github.com:Pzdrs/tpb-2023.git
