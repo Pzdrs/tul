@@ -49,3 +49,6 @@
 [submodule "pjpa-2023"]
 	path = pjpa-2023
 	url = git@github.com:Pzdrs/pjpa-2023.git
+[submodule "tws-2023"]
+	path = tws-2023
+	url = git@github.com:Pzdrs/TWS-semestralka.git
