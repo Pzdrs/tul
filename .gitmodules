@@ -10,9 +10,6 @@
 [submodule "tas-2025"]
 	path = tas-2025
 	url = git@github.com:Pzdrs/tas-2025.git
-[submodule "ald-2022"]
-	path = ald-2022
-	url = git@github.com:Pzdrs/ald-2022.git
 [submodule "ctc-2024/go-gas"]
 	path = ctc-2024/go-gas
 	url = git@github.com:Pzdrs/go-gas.git
@@ -91,3 +88,9 @@
 [submodule "dp/graph-insights"]
 	path = dp/graph-insights
 	url = git@gitlab.com:pycrs-epa/graph-insights.git
+[submodule "ald-2022s/projekt"]
+	path = ald-2022/projekt
+	url = git@github.com:pavelvachaaa/ald-tul-project.git
+[submodule "ald-2022s/labs"]
+	path = ald-2022/labs
+	url = git@github.com:Pzdrs/ald-2022.git
