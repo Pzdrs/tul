@@ -52,3 +52,9 @@
 [submodule "tws-2023"]
 	path = tws-2023
 	url = git@github.com:Pzdrs/TWS-semestralka.git
+[submodule "uzo-2024"]
+	path = uzo-2024
+	url = git@github.com:Pzdrs/uzo-2024.git
+[submodule "pdo-2024"]
+	path = pdo-2024
+	url = git@github.com:Pzdrs/pdo-2024.git
