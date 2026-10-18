@@ -4,9 +4,6 @@
 [submodule "pvi-2025"]
 	path = pvi-2025
 	url = git@github.com:Pzdrs/pvi-2025.git
-[submodule "pwa-2025/what-it-doo"]
-	path = pwa-2025/what-it-doo
-	url = git@github.com:Pzdrs/what-it-doo.git
 [submodule "icp-2025/scuffcraft"]
 	path = icp-2025/scuffcraft
 	url = git@github.com:Pzdrs/scuffcraft.git
@@ -43,3 +40,6 @@
 [submodule "paa-2024/semestralka/hikeit-api"]
 	path = paa-2024/semestralka/hikeit-api
 	url = git@github.com:Pzdrs/hikeit-api.git
+[submodule "what-it-doo"]
+	path = pwa-2025
+	url = git@github.com:Pzdrs/what-it-doo.git
