@@ -34,3 +34,12 @@
 [submodule "rdb-2025"]
 	path = rdb-2025
 	url = git@github.com:MarcelHor/rdb.git
+[submodule "prk-2025"]
+	path = prk-2025
+	url = git@github.com:Pzdrs/degesharp.git
+[submodule "paa-2024/semestralka/hikeit"]
+	path = paa-2024/semestralka/hikeit
+	url = git@github.com:Pzdrs/hikeit.git
+[submodule "paa-2024/semestralka/hikeit-api"]
+	path = paa-2024/semestralka/hikeit-api
+	url = git@github.com:Pzdrs/hikeit-api.git
