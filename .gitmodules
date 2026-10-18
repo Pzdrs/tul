@@ -31,6 +31,6 @@
 [submodule "ppj-2025/semestralka"]
 	path = ppj-2025/semestralka
 	url = git@github.com:Pzdrs/CloudQuery.git
-[submodule "semestralka"]
-	path = semestralka
+[submodule "rdb-2025"]
+	path = rdb-2025
 	url = git@github.com:MarcelHor/rdb.git
